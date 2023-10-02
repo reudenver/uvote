@@ -23,6 +23,8 @@ class ElectionResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-bolt';
 
+    protected static ?int $navigationSort = 8;
+
     public static function form(Form $form): Form
     {
         return $form

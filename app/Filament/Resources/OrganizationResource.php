@@ -22,6 +22,8 @@ class OrganizationResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-globe-asia-australia';
 
+    protected static ?int $navigationSort = 5;
+
     public static function form(Form $form): Form
     {
         return $form

@@ -26,6 +26,8 @@ class PartyListResource extends Resource
 
     protected static ?string $navigationLabel = 'Partylists';
 
+    protected static ?int $navigationSort = 6;
+
 
     public static function form(Form $form): Form
     {

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GoogleAuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/auth/google', [GoogleAuthController::class, 'signin'])->name('google.signin');
+Route::get('/callback', [GoogleAuthController::class, 'callback']);
