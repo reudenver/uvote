@@ -12,10 +12,12 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Section;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\DateTimePicker;
 use App\Filament\Resources\ElectionResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\ElectionResource\RelationManagers;
+use Filament\Forms\Components\Group;
 
 class ElectionResource extends Resource
 {
@@ -51,8 +53,36 @@ class ElectionResource extends Resource
                             ->minDate(now())
                             ->afterOrEqual('start')
                             ->rules('required')
-                    ])
-            ])->columns(2);
+                    ])->columnSpan(2)->columns(2),
+
+                Group::make()
+                    ->schema([
+
+                        Section::make('Voters')
+                            ->collapsible()
+                            ->collapsed(true)
+                            ->schema([
+                                CheckboxList::make('courses')
+                                    ->label('Availble to')
+                                    ->searchable()
+                                    ->relationship('courses', 'name')
+                                    ->bulkToggleable(),
+                            ])->columnSpan(1),
+        
+                        Section::make('Partylists')
+                            ->collapsible()
+                            ->collapsed(true)
+                            ->schema([
+                                CheckboxList::make('partylists')
+                                    ->label('Select Partylist')
+                                    ->searchable()
+                                    ->relationship('partylists', 'name')
+                                    ->bulkToggleable(),
+                            ])->columnSpan(1)
+                    ]),
+
+
+            ])->columns(3);
     }
 
     public static function table(Table $table): Table

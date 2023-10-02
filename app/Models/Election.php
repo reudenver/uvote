@@ -16,4 +16,14 @@ class Election extends Model
     {
         return $this->belongsTo(Organization::class);
     }
+
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class, 'election_course')->withTimestamps();
+    }
+
+    public function partylists()
+    {
+        return $this->belongsToMany(PartyList::class, 'election_party_list')->withTimestamps();
+    }
 }
