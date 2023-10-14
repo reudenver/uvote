@@ -1,22 +1,23 @@
 <?php
 
 use App\Http\Controllers\GoogleAuthController;
+use App\Http\Controllers\LogOutController;
+use App\Http\Middleware\EnsureProfileIsCompleted;
+use App\Livewire\CompleteProfile;
+use App\Livewire\HomePage;
+use Illuminate\Auth\Events\Logout;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', HomePage::class)->middleware(EnsureProfileIsCompleted::class)->name('home');
 
-Route::get('/auth/google', [GoogleAuthController::class, 'signin'])->name('google.signin');
+Route::get('/complete-profile', CompleteProfile::class)->middleware('auth')->name('complete.profile');
+
+Route::get('/election', function() {
+    dd('only authenticated users');
+})->middleware('auth')->name('election.index');
+
+Route::post('/logout', LogOutController::class)->name('logout');
+
+Route::get('/auth/google', [GoogleAuthController::class, 'signin'])->name('login');
 Route::get('/callback', [GoogleAuthController::class, 'callback']);
