@@ -16,7 +16,9 @@ use App\Filament\Resources\CourseResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\CourseResource\RelationManagers;
 use App\Filament\Resources\CourseResource\RelationManagers\SectionsRelationManager;
+use Filament\Forms\Components\CheckboxList;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 
 class CourseResource extends Resource
 {
@@ -83,7 +85,9 @@ class CourseResource extends Resource
                 
             ])
             ->filters([
-                //
+                SelectFilter::make('department.name')
+                    ->label('Department')
+                    ->searchable(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
