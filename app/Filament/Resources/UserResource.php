@@ -87,7 +87,7 @@ class UserResource extends Resource
                             ->schema([
                                 Select::make('party_list_id')
                                     ->label('Partylist')
-                                    ->relationship('partylist', 'name'),
+                                    ->relationship('party_list', 'name'),
                                 DatePicker::make('birthday'),
                                 Textarea::make('address')
                                     ->columnSpanFull(),
