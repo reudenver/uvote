@@ -4,12 +4,14 @@ use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\LogOutController;
 use App\Http\Middleware\EnsureProfileIsCompleted;
 use App\Livewire\CompleteProfile;
+use App\Livewire\Faq;
 use App\Livewire\HomePage;
-use Illuminate\Auth\Events\Logout;
 use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', HomePage::class)->middleware(EnsureProfileIsCompleted::class)->name('home');
+
+Route::get('/faq', Faq::class);
 
 Route::get('/complete-profile', CompleteProfile::class)->middleware('auth')->name('complete.profile');
 
