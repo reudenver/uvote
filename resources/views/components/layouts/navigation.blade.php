@@ -39,7 +39,7 @@
                     data-dropdown-placement="bottom">
                     <span class="sr-only">Open user menu</span>
                     @if (is_null(auth()->user()->photo))
-                        <img class="w-8 h-8 rounded-full" src="{{ asset('logo/default-user.png') }}" alt="user photo">
+                        <img class="w-8 h-8 rounded-full" src="https://ui-avatars.com/api/?background=random&length=1&name={{auth()->user()->name}}" alt="user photo">
                     @else
                         <img class="w-8 h-8 rounded-full" src="{{ asset('storage/'.auth()->user()->photo) }}" alt="user photo">
                     @endif

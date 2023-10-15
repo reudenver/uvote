@@ -14,88 +14,34 @@
             </div>
         </div>
         @endif
-        <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
-            id="content">Current Election</h1>
-        <div class="mt-6 lg:grid lg:grid-cols-3 lg:gap-8">
-            <a href="/election"
-                class="block p-6 mb-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:hover:bg-gray-700 hover:bg-gray-100 dark:border-gray-700 lg:mb-0">
-                <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">JPCS - Junior
-                    Philippine Computer Society</h3>
-                <p>
-                    <span
-                        class="bg-blue-100 text-blue-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
-                        <svg class="w-2.5 h-2.5 mr-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="currentColor" viewBox="0 0 20 20">
-                            <path
-                                d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z" />
-                        </svg>
-                        2 minutes ago
-                    </span>
-                </p>
-            </a>
 
-            <a href="/election"
-                class="block p-6 mb-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:hover:bg-gray-700 hover:bg-gray-100 dark:border-gray-700 lg:mb-0">
-                <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">CSC - Central Student
-                    Council</h3>
-                <p>
-                    <span
-                        class="bg-blue-100 text-blue-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
-                        <svg class="w-2.5 h-2.5 mr-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="currentColor" viewBox="0 0 20 20">
-                            <path
-                                d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z" />
-                        </svg>
-                        22 minutes ago
-                    </span>
-                </p>
-            </a>
-        </div>
-    </section>
+        
 
-    <section class="container mx-auto p-4">
-        <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
-            id="content">Upcoming Election</h1>
-        <div class="mt-6 lg:grid lg:grid-cols-3 lg:gap-8">
-            <a href="/election"
-                class="block p-6 mb-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:hover:bg-gray-700 hover:bg-gray-100 dark:border-gray-700 lg:mb-0">
-                <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">CSC - Central Student
-                    Council</h3>
-                <p>
-                    <span
-                        class="bg-blue-100 text-blue-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
-                        <svg class="w-2.5 h-2.5 mr-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="currentColor" viewBox="0 0 20 20">
-                            <path
-                                d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z" />
-                        </svg>
-                        November 1, 2023 8:00AM
-                    </span>
-                </p>
-            </a>
+        <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+            <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
+                <li class="mr-2" role="presentation">
+                    <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Present Elections</button>
+                </li>
+                <li class="mr-2" role="presentation">
+                    <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab" aria-controls="dashboard" aria-selected="false">Upcoming Elections</button>
+                </li>
+                <li class="mr-2" role="presentation">
+                    <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="settings-tab" data-tabs-target="#settings" type="button" role="tab" aria-controls="settings" aria-selected="false">Past Elections</button>
+                </li>
+            </ul>
         </div>
-    </section>
 
-    <section class="container mx-auto p-4">
-        <h1 class="inline-block mb-2 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"
-            id="content">Previous Election</h1>
-        <div class="mt-6 lg:grid lg:grid-cols-3 lg:gap-8">
-            <a href="/election"
-                class="block p-6 mb-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:hover:bg-gray-700 hover:bg-gray-100 dark:border-gray-700 lg:mb-0">
-                <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">PSME - Philippine
-                    Socienty of Mechanical Engineering</h3>
-                <p>
-                    <span
-                        class="bg-blue-100 text-blue-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
-                        <svg class="w-2.5 h-2.5 mr-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="currentColor" viewBox="0 0 20 20">
-                            <path
-                                d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z" />
-                        </svg>
-                        Two months ago
-                    </span>
-                </p>
-            </a>
+        <div id="myTabContent">
+            <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <p class="text-sm text-gray-500 dark:text-gray-400">wip</p>
+            </div>
+            <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+                <p class="text-sm text-gray-500 dark:text-gray-400">wip</p>
+            </div>
+            <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+                <p class="text-sm text-gray-500 dark:text-gray-400">wip</p>
+            </div>
         </div>
-    </section>
+        
+
 </div>
