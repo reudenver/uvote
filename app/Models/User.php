@@ -74,5 +74,8 @@ class User extends Authenticatable implements FilamentUser
         return $this->belongsTo(Section::class);
     }
 
-
+    public function party_list()
+    {
+        return $this->belongsTo(PartyList::class);
+    }
 }
