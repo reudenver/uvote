@@ -15,6 +15,7 @@ use App\Filament\Resources\OrganizationResource\Pages;
 use App\Filament\Resources\OrganizationResource\RelationManagers;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 
 class OrganizationResource extends Resource
@@ -61,6 +62,8 @@ class OrganizationResource extends Resource
                 TextColumn::make('name')
                     ->label('Name')
                     ->searchable(),
+
+                ImageColumn::make('photo'),
             ])
             ->filters([
                 //

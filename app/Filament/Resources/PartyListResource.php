@@ -18,6 +18,7 @@ use App\Filament\Resources\PartyListResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\PartyListResource\RelationManagers;
 use Filament\Forms\Components\FileUpload;
+use Filament\Tables\Columns\ImageColumn;
 
 class PartyListResource extends Resource
 {
@@ -70,6 +71,8 @@ class PartyListResource extends Resource
                 TextColumn::make('name')
                     ->label('Name')
                     ->searchable(),
+
+                ImageColumn::make('photo'),
 
                 ColorColumn::make('color')
                     ->label('Color'),

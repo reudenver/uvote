@@ -17,8 +17,8 @@
 
         
 
-        <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
-            <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
+        <div class="col mb-4 border-b border-gray-200 dark:border-gray-700">
+            <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab" data-tabs-toggle="#electionTabContent" role="tablist">
                 <li class="mr-2" role="presentation">
                     <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Present Elections</button>
                 </li>
@@ -31,15 +31,18 @@
             </ul>
         </div>
 
-        <div id="myTabContent">
+        <div id="electionTabContent" wire:init="loadElections">
             <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                <p class="text-sm text-gray-500 dark:text-gray-400">wip</p>
+                <p class="text-sm text-gray-500 dark:text-gray-400">{{ var_export($present_elections) }}</p>
+                <div wire:loading>
+                    Loading ...
+                </div>
             </div>
             <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
-                <p class="text-sm text-gray-500 dark:text-gray-400">wip</p>
+                <p class="text-sm text-gray-500 dark:text-gray-400">{{ var_export($upcoming_elections) }}</p>
             </div>
             <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="settings" role="tabpanel" aria-labelledby="settings-tab">
-                <p class="text-sm text-gray-500 dark:text-gray-400">wip</p>
+                <p class="text-sm text-gray-500 dark:text-gray-400">{{ var_export($past_elections) }}</p>
             </div>
         </div>
         

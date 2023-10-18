@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use Closure;
 use Filament\Forms;
 use App\Models\User;
 use Filament\Tables;
@@ -65,14 +66,28 @@ class ElectionResource extends Resource
                             ->schema([
                                 Repeater::make('candidates')
                                     ->schema([
-                                        Select::make('position')
+                                        Select::make('position_id')
+                                            ->label('Position')
                                             ->options(Position::all()->pluck('name', 'id'))
                                             ->required(),
-                                        Select::make('candidate_name')
+                                        Select::make('candidate_id')
+                                            ->label('Candidate name')
                                             ->options(User::all()->pluck('name', 'id'))
                                             ->searchable()
                                             ->required()
-                                            ->unique(Election::class, 'candidates')
+                                            ->rules([
+                                                function ($component) {
+                                                    return function (string $attribute, $value, Closure $fail) use ($component) {
+                                
+                                                        $items = $component->getContainer()->getParentComponent()->getState();
+                                                        $selected = array_column($items, $component->getName());
+                                
+                                                        if (count(array_unique($selected)) < count($selected)) {
+                                                            $fail('You can only select one candidate.');
+                                                        }
+                                                    };
+                                                },
+                                            ])
                                     ])
     ->columns(2)
                             ]),
