@@ -9,7 +9,7 @@
         <div id="accordion-flush" data-accordion="collapse"
             data-active-classes="bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
             data-inactive-classes="text-gray-500 dark:text-gray-400">
-            @foreach ($faqs as $key => $faq)
+            @forelse ($faqs as $key => $faq)
                 <h2 id="accordion-flush-heading-{{ $key }}">
                     <button type="button"
                         class="flex items-center justify-between w-full py-5 font-medium text-left text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400"
@@ -30,7 +30,11 @@
                         </p>
                     </div>
                 </div>
-            @endforeach
+
+            @empty
+            <p class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400 lg:text-center lg:text-xl xl:px-64 lg:mb-16">
+                No FAQs...</p>
+            @endforelse
 
         </div>
 

@@ -15,8 +15,7 @@ class OrganizationSeeder extends Seeder
     {
         DB::table('organizations')->insert([
             'code' => 'JPCS',
-            'name' => 'Junior Philippine Computer Society',
-            'photo' => "https://ui-avatars.com/api/?size=256&background=random&name=JPCS"
+            'name' => 'Junior Philippine Computer Society'
         ]);
     }
 }

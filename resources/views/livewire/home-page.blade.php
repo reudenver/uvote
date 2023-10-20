@@ -1,50 +1,73 @@
 <div>
     <section class="container mx-auto p-4 max-w-screen-xl">
         @if (session()->has('message'))
-        <div class="flex items-center p-4 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800"
-            role="alert">
-            <svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor" viewBox="0 0 20 20">
-                <path
-                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
-            </svg>
-            <span class="sr-only">Info</span>
-            <div>
-                <span class="font-medium">Profile completed!</span> {{ session('message') }}
-            </div>
-        </div>
-        @endif
-
-        
-
-        <div class="col mb-4 border-b border-gray-200 dark:border-gray-700">
-            <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab" data-tabs-toggle="#electionTabContent" role="tablist">
-                <li class="mr-2" role="presentation">
-                    <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Present Elections</button>
-                </li>
-                <li class="mr-2" role="presentation">
-                    <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab" aria-controls="dashboard" aria-selected="false">Upcoming Elections</button>
-                </li>
-                <li class="mr-2" role="presentation">
-                    <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="settings-tab" data-tabs-target="#settings" type="button" role="tab" aria-controls="settings" aria-selected="false">Past Elections</button>
-                </li>
-            </ul>
-        </div>
-
-        <div id="electionTabContent" wire:init="loadElections">
-            <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                <p class="text-sm text-gray-500 dark:text-gray-400">{{ var_export($present_elections) }}</p>
-                <div wire:loading>
-                    Loading ...
+            <div class="flex items-center p-4 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800"
+                role="alert">
+                <svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                </svg>
+                <span class="sr-only">Info</span>
+                <div>
+                    <span class="font-medium">Profile completed!</span> {{ session('message') }}
                 </div>
             </div>
-            <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
-                <p class="text-sm text-gray-500 dark:text-gray-400">{{ var_export($upcoming_elections) }}</p>
-            </div>
-            <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="settings" role="tabpanel" aria-labelledby="settings-tab">
-                <p class="text-sm text-gray-500 dark:text-gray-400">{{ var_export($past_elections) }}</p>
-            </div>
-        </div>
-        
+        @endif
 
+        @include('components.layouts.election-navigation')
+
+    </section>
+
+    <section class="container mx-auto p-4 max-w-screen-xl" wire:init="loadElections">
+        @forelse ($present_elections as $present_election)
+            <div
+                class="mb-5 w-full p-4 text-center bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+                <div class="flex justify-center items-center">
+                    @if (is_null($present_election['organization']->photo))
+                        <img src="https://ui-avatars.com/api/?size=256&background=random&name={{ $present_election['organization']->name }}"
+                            class="rounded-full w-12 h-12 ring-2 ring-gray-300 dark:ring-gray-500" alt="organization logo">
+                    @else
+                        <img src="{{ asset('storage/' . $present_election['organization']->photo) }}"
+                            class="rounded-full w-12 h-12 ring-2 ring-gray-300 dark:ring-gray-500" alt="organization logo">
+                    @endif
+
+                </div>
+                <h5 class="mb-5 text-3xl font-bold text-gray-900 dark:text-white">
+                    {{ $present_election['organization']->name }}</h5>
+                <p class="mb-5 text-base text-gray-500 sm:text-lg dark:text-gray-400">Camarines Sur Polytechnic Colleges
+                </p>
+
+                <div class="flex mb-10 items-center justify-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
+                    @foreach ($present_election['partylists'] as $key => $partylist)
+                        @if (is_null($partylist[0]['party_list']['photo']))
+                            <img src="https://ui-avatars.com/api/?size=256&background=random&name={{ $partylist[0]['party_list']['name'] }}"
+                                class="rounded-full w-20 h-20 ring-2 ring-gray-300 dark:ring-gray-500" alt="organization logo">
+                        @else
+                            <img src="{{ asset('storage/' . $partylist[0]['party_list']['photo']) }}"
+                                class="rounded-full w-20 h-20 ring-2 ring-gray-300 dark:ring-gray-500" alt="organization logo">
+                        @endif
+                    @endforeach
+
+                </div>
+
+                <div class="items-center justify-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
+
+                    <a href="{{ route('start.voting', $present_election['election_id']) }}"
+                        class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        Start Voting
+                        <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 5h12m0 0L9 1m4 4L9 9" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        @empty
+        @endforelse
+        <div wire:loading>
+            Loading ...
+        </div>
+    </section>
 </div>

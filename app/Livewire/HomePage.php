@@ -2,9 +2,9 @@
 
 namespace App\Livewire;
 
+use App\Models\User;
 use Livewire\Component;
 use App\Models\Election;
-use Illuminate\Database\Eloquent\Collection;
 
 class HomePage extends Component
 {
@@ -22,34 +22,49 @@ class HomePage extends Component
         $this->currentDateTime = now()->format('Y-m-d H:i:s');
     }
 
-    public function getPresentElections(): Collection
+    public function getPresentElections()
     {
-        return Election::where('start', '<=', $this->currentDateTime)
+        $elections = Election::where('start', '<=', $this->currentDateTime)
             ->where('end', '>=', $this->currentDateTime)
+            ->with('organization')
             ->get();
+
+        $elections_data = [];
+        $candidates_id = [];
+
+        foreach ($elections as $election) {
+            foreach ($election->candidates as $candidate) {
+                array_push($candidates_id, $candidate['candidate_id']);
+            }
+
+            $party_lists = User::whereIn('id', $candidates_id)->with('party_list')->get()->groupBy('party_list.name');
+            
+
+            $elections_data[] = [
+                'election_id' => $election->id,
+                'organization' => $election->organization,
+                'partylists' => $party_lists
+            ];
+        }
+
+        return $elections_data;
     }
 
-    public function getUpcomingElections(): Collection
-    {
-        return Election::where('start', '>', $this->currentDateTime)->get();
-    }
+    // public function getUpcomingElections()
+    // {
+    //     return Election::where('start', '>', $this->currentDateTime)->get();
+    // }
 
-    public function getPastElections(): Collection
-    {
-        return Election::where('end', '<', $this->currentDateTime)->get();
-    }
+    // public function getPastElections()
+    // {
+    //     return Election::where('end', '<', $this->currentDateTime)->get();
+    // }
 
     public function render()
     {
         return view('livewire.home-page', [
             'present_elections' => $this->readyToLoad
                 ? $this->getPresentElections()
-                : [],
-            'upcoming_elections' => $this->readyToLoad
-                ? $this->getUpcomingElections()
-                : [],
-            'past_elections' => $this->readyToLoad
-                ? $this->getPastElections()
                 : [],
         ]);
     }
