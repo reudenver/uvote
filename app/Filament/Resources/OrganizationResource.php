@@ -13,7 +13,9 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\OrganizationResource\Pages;
 use App\Filament\Resources\OrganizationResource\RelationManagers;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 
 class OrganizationResource extends Resource
@@ -37,8 +39,16 @@ class OrganizationResource extends Resource
                         TextInput::make('name')
                             ->label('Name')
                             ->rules('required')
-                    ])
-            ]);
+                    ])->columnSpan(2),
+
+                Section::make()
+                    ->schema([
+                        FileUpload::make('photo')
+                            ->label('Logo')
+                            ->image()
+                            ->imageEditor()
+                    ])->columnSpan(1)    
+            ])->columns(3);
     }
 
     public static function table(Table $table): Table
@@ -52,6 +62,8 @@ class OrganizationResource extends Resource
                 TextColumn::make('name')
                     ->label('Name')
                     ->searchable(),
+
+                ImageColumn::make('photo'),
             ])
             ->filters([
                 //

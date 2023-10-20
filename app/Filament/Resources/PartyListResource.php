@@ -17,6 +17,8 @@ use Filament\Forms\Components\ColorPicker;
 use App\Filament\Resources\PartyListResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\PartyListResource\RelationManagers;
+use Filament\Forms\Components\FileUpload;
+use Filament\Tables\Columns\ImageColumn;
 
 class PartyListResource extends Resource
 {
@@ -46,8 +48,16 @@ class PartyListResource extends Resource
                         ColorPicker::make('color')
                             ->label('Color')
                             ->rules('required'),
-                    ])
-            ]);
+                    ])->columnSpan(2),
+
+                Section::make()
+                    ->schema([
+                        FileUpload::make('photo')
+                            ->label('Logo')
+                            ->image()
+                            ->imageEditor(),
+                    ])->columnSpan(1)
+            ])->columns(3);
     }
 
     public static function table(Table $table): Table
@@ -61,6 +71,8 @@ class PartyListResource extends Resource
                 TextColumn::make('name')
                     ->label('Name')
                     ->searchable(),
+
+                ImageColumn::make('photo'),
 
                 ColorColumn::make('color')
                     ->label('Color'),

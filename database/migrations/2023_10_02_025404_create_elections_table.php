@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('organization_id')->constrained()->onDelete('cascade');
             $table->dateTime('start');
             $table->dateTime('end');
+            $table->json('candidates')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
