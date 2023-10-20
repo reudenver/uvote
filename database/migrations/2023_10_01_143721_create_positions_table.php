@@ -13,10 +13,7 @@ return new class extends Migration
     {
         Schema::create('positions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('organization_id')->constrained()->onDelete('cascade');
             $table->string('name');
-            $table->integer('slot');
-            $table->integer('rank');
             $table->softDeletes();
             $table->timestamps();
         });
