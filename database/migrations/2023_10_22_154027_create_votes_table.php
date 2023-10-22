@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('elections', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->foreignId('organization_id')->constrained()->onDelete('cascade');
-            $table->dateTime('start');
-            $table->dateTime('end');
-            $table->json('candidates')->nullable();
+        Schema::create('votes', function (Blueprint $table) {
+            $table->foreignUuid('election_id')->constrained();
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('position_id')->constrained();
+            $table->integer('candidate_id');
+            $table->string('reference_number');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('elections');
+        Schema::dropIfExists('votes');
     }
 };

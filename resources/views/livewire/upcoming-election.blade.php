@@ -7,7 +7,13 @@
 
     <section class="container mx-auto p-4 max-w-screen-xl">
         
-        upcoming
+        @forelse ($upcoming_elections as $election)
+            <p class="text-5xl text-gray-900 dark:text-white">
+                {{ $loop->index }}. {{ $election->organization->name }}
+            </p>
+        @empty
+            No upcoming elections
+        @endforelse
 
     </section>
 </div>

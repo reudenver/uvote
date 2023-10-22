@@ -1,6 +1,6 @@
 <ul wire:ignore class="flex flex-wrap text-sm font-medium text-center text-gray-500 dark:text-gray-400">
     <li class="mr-2">
-        <a href="{{ route('home') }}" wire:navigate class="{{ (in_array(request()->segment(1), ['', 'voting'])) ? 'inline-flex px-4 py-3 text-white bg-blue-600 rounded-lg active' : 'inline-flex inline-block px-4 py-3 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white' }}"
+        <a href="{{ route('home') }}" class="{{ (in_array(request()->segment(1), ['', 'election'])) ? 'inline-flex px-4 py-3 text-white bg-blue-600 rounded-lg active' : 'inline-flex inline-block px-4 py-3 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white' }}"
             aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                 stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -9,7 +9,7 @@
             Present Elections</a>
     </li>
     <li class="mr-2">
-        <a href="{{ route('upcoming.election') }}" wire:navigate
+        <a href="{{ route('upcoming.election') }}"
         class="{{ (request()->segment(1) == 'upcoming-elections') ? 'inline-flex px-4 py-3 text-white bg-blue-600 rounded-lg active' : 'inline-flex inline-block px-4 py-3 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white' }}"><svg
                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-5 h-5">
@@ -19,7 +19,7 @@
             Upcoming Elections</a>
     </li>
     <li class="mr-2">
-        <a href="{{ route('past.election') }}" wire:navigate
+        <a href="{{ route('past.election') }}"
         class="{{ (request()->segment(1) == 'past-elections') ? 'inline-flex px-4 py-3 text-white bg-blue-600 rounded-lg active' : 'inline-flex inline-block px-4 py-3 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white' }}"><svg
                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-5 h-5">

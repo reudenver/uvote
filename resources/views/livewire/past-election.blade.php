@@ -6,6 +6,14 @@
     </section>
 
     <section class="container mx-auto p-4 max-w-screen-xl">
-        past election
+        
+        @forelse ($past_elections as $election)
+            <p class="text-5xl text-gray-900 dark:text-white">
+                {{ $loop->index }}. {{ $election->organization->name }}
+            </p>
+        @empty
+            No past elections
+        @endforelse
+
     </section>
 </div>

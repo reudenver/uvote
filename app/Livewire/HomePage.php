@@ -50,16 +50,6 @@ class HomePage extends Component
         return $elections_data;
     }
 
-    // public function getUpcomingElections()
-    // {
-    //     return Election::where('start', '>', $this->currentDateTime)->get();
-    // }
-
-    // public function getPastElections()
-    // {
-    //     return Election::where('end', '<', $this->currentDateTime)->get();
-    // }
-
     public function render()
     {
         return view('livewire.home-page', [

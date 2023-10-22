@@ -10,7 +10,7 @@
                 </svg>
                 <span class="sr-only">Info</span>
                 <div>
-                    <span class="font-medium">Profile completed!</span> {{ session('message') }}
+                    <span class="font-medium">Success!</span> {{ session('message') }}
                 </div>
             </div>
         @endif

@@ -8,9 +8,8 @@ use App\Livewire\CompleteProfile;
 use App\Livewire\UpcomingElection;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LogOutController;
+use App\Http\Controllers\StoreVoteController;
 use App\Http\Controllers\GoogleAuthController;
-use App\Http\Middleware\EnsureProfileIsCompleted;
-
 
 Route::get('/', HomePage::class)->name('home');
 Route::get('/upcoming-elections', UpcomingElection::class)->name('upcoming.election');
@@ -22,11 +21,12 @@ Route::get('/complete-profile', CompleteProfile::class)->middleware('auth')->nam
 
 Route::prefix('election')->middleware(['auth', 'profileCompleted'])->group(function () {
     Route::get('/{election}', Voting::class)->name('start.voting');
+    Route::post('/{election}', [StoreVoteController::class, 'store'])->name('vote.store');
 });
 
-Route::get('/election', function() {
-    dd('only authenticated users');
-})->middleware('auth')->name('election.index');
+// Route::get('/election', function() {
+//     dd('only authenticated users');
+// })->middleware('auth')->name('election.index');
 
 Route::post('/logout', LogOutController::class)->name('logout');
 
