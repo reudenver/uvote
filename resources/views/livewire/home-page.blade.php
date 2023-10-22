@@ -65,6 +65,7 @@
                 </div>
             </div>
         @empty
+            No present elections
         @endforelse
         <div wire:loading>
             Loading ...
