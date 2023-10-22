@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('election_party_list', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('election_id')->constrained()->onDelete('cascade');
+            $table->foreignUuid('election_id')->constrained()->onDelete('cascade');
             $table->foreignId('party_list_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

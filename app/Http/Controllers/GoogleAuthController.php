@@ -48,8 +48,6 @@ class GoogleAuthController extends Controller
                     'password' => 'password',
                     'is_admin' => false,
                 ]);
-
-                //TODO redirect to complete profile
      
                 Auth::login($newUser);
       
