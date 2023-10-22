@@ -9,7 +9,7 @@
         
         @forelse ($past_elections as $election)
             <p class="text-5xl text-gray-900 dark:text-white">
-                {{ $loop->index }}. {{ $election->organization->name }}
+                {{ $loop->index + 1 }}. {{ $election->organization->name }}
             </p>
         @empty
             No past elections
